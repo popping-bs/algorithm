@@ -33,11 +33,10 @@ for _ in range(k):
             for next_node in graph[cur]:
                 if color[next_node] == 0:
                     color[next_node] = -color[cur]
+                    q.append(next_node)
                 else:
                     if color[next_node] == color[cur]:
                         bipartite = False
                         break
-    if not bipartite:
-        break
 
-print("YES" if bipartite else "NO")
+    print("YES" if bipartite else "NO")
