@@ -7,9 +7,8 @@ input = sys.stdin.readline
 
 R, C = map(int, input().split())
 
-visited = [[False]*C for _ in range(R)]
-board = [list(input().rstrip()) for _ in range(R)]
-used = [board[0][0]]
+board = [input().strip() for _ in range(R)]
+used = set([board[0][0]])
 max_len = 0
 
 dx = (1,-1,0,0)
@@ -25,14 +24,12 @@ def dfs(r,c,l):
         nr = r + dx[i]
         nc = c + dy[i]
 
-        if nr >= 0 and nr < R and nc>=0 and nc < C:
-            if not visited[nr][nc] and board[nr][nc] not in used:
-                used.append(board[nr][nc])
-                visited[nr][nc] = True
+        if 0 <= nr < R and 0 <= nc < C:
+            ch = board[nr][nc]
+            if ch not in used:
+                used.add(ch)
                 dfs(nr,nc,l+1)
-                used.remove(board[nr][nc])
-                visited[nr][nc] = False
+                used.remove(ch)
 
-visited[0][0] = True
 dfs(0,0,1) 
 print(max_len)
