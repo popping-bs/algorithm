@@ -22,6 +22,7 @@ def dfs(start,depth,case):
         str_nums = list(map(str,answer))
 
         print(' '.join(str_nums))
+        return
 
     for i in case:
         if i > start:
